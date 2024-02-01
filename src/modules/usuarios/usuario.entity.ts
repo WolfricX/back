@@ -14,3 +14,4 @@ export class UsuarioEntity {
   @Column()
   correo_electronico: string;
 }
+

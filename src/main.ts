@@ -1,3 +1,5 @@
+// main.ts
+
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './modules/app.module';
 import * as fs from 'fs';
@@ -19,6 +21,12 @@ async function bootstrap() {
   );
 
   app.enableCors(); // Habilita CORS
+
+  // Agregar manejador de errores global
+  app.use((err, req, res, next) => {
+    console.error(err);
+    res.status(500).json({ mensaje: 'Error interno del servidor' });
+  });
 
   await app.listen(3000);
 }
